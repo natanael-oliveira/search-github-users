@@ -1,0 +1,19 @@
+* instalação do Babel *
+
+- yarn add @babel/cli 
+- yarn add @babel/preset-env
+- yarn add @babel/core
+- criar um arquivo ".babelrc" e adicionar o seguintes dados:
+------------------------------------------------------------
+    {
+        "presets": ["@babel/preset-env"]
+    }
+------------------------------------------------------------
+
+- e adicionar esse código no package.json:
+------------------------------------------------------------
+  "scripts": {
+    "dev": "babel ./main.js -o ./bundle.js -w"
+  }
+------------------------------------------------------------
+- agora é só executar o comando "dev" no terminal
