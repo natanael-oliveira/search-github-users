@@ -4,10 +4,10 @@
 
 //percorre uma array e realiza operações sequenciais dentro dela;
 const arr = [1,3,4,5,8,9,10];
-const newArr = arr.map(function(item,index){
+const cont = arr.map(function(item,index){
     return item + index;
 });
-// console.log(newArr);
+// console.log(cont);
 
 //percorre uma array e utiliza o resultado de cada operação na operação futura;   
 const sum = arr.reduce(function(total,next){
@@ -25,5 +25,26 @@ const filter = arr.filter(function(item){
 const find = arr.find(function(item){
     return item === 10;
 });
-// console.log(find);
+console.log(find);
 
+//-------------------------------------------------------------------------
+
+//funções anôninas "Arrow Functions"
+
+//forma utilizada normalmente
+
+// const newArr = arr.map((item) => {
+//     return item * 2;
+// });
+
+//quando só passa um parâmetro
+
+// const newArr = arr.map(item => {
+//     return item * 2;
+// });
+
+//quando retorna simplesmente uma informação
+
+const newArr = arr.map(item => item * 2);
+
+console.log(newArr);
