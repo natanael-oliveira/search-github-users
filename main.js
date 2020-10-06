@@ -77,3 +77,34 @@
 
 //--------------------------------------------------------------
 
+//REST
+
+// const usuario = {
+//     nome: 'Diego',
+//     idade: 23,
+//     endereco: {
+//         cidade: 'Rio do Sul',
+//         estado: 'SC',
+//     },
+// }
+// const {nome,...resto} = usuario;
+// console.log(nome,resto);
+
+// function soma(a,b,...params){
+//     return params;
+// }
+// console.log(soma(1,3,4,5,6));
+
+//SPREAD
+
+// const arr1 = [1,2,3];
+// const arr2 = [4,5,6];
+// const arr3 = [...arr1,...arr2];
+// console.log(arr3);
+
+const usuario1 = {
+    nome: 'Diego',
+    idade: 23,
+}
+const usuario2 = {...usuario1,nome:'Pedro'};
+console.log(usuario2);
