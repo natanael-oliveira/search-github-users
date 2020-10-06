@@ -21,8 +21,8 @@ var filter = arr.filter(function (item) {
 
 var find = arr.find(function (item) {
   return item === 10;
-});
-console.log(find); //-------------------------------------------------------------------------
+}); // console.log(find);
+//-------------------------------------------------------------------------
 //funções anôninas "Arrow Functions"
 //forma utilizada normalmente
 // const newArr = arr.map((item) => {
@@ -33,8 +33,14 @@ console.log(find); //-----------------------------------------------------------
 //     return item * 2;
 // });
 //quando retorna simplesmente uma informação
+// const newArr = arr.map(item => item * 2);
+// console.log(newArr);
 
-var newArr = arr.map(function (item) {
-  return item * 2;
-});
-console.log(newArr);
+var soma = function soma() {
+  var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
+  var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
+  return a + b;
+};
+
+console.log(soma(1));
+console.log(soma());

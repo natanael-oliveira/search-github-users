@@ -25,7 +25,7 @@ const filter = arr.filter(function(item){
 const find = arr.find(function(item){
     return item === 10;
 });
-console.log(find);
+// console.log(find);
 
 //-------------------------------------------------------------------------
 
@@ -45,6 +45,11 @@ console.log(find);
 
 //quando retorna simplesmente uma informação
 
-const newArr = arr.map(item => item * 2);
+// const newArr = arr.map(item => item * 2);
 
-console.log(newArr);
+// console.log(newArr);
+
+const soma = (a = 3,b = 6) => a +b;
+
+console.log(soma(1));
+console.log(soma());
