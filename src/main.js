@@ -17,16 +17,19 @@ class App {
         if (userName === '') {
             return;
         }
-        const response = await api.get(`/users/${userName}/repos`);
-        const { avatar_url } = response;
-        for (var repo of response.data) {
-            const { name, html_url, description } = repo;
-            this.repositories.push({
-                name,
-                description,
-                html_url,
-            });
-            this.render(name, description, html_url);
+        try {
+            const response = await api.get(`/users/${userName.replace(" ", "-")}/repos`);
+            for (var repo of response.data) {
+                const { name, html_url, description } = repo;
+                this.repositories.push({
+                    name,
+                    description,
+                    html_url,
+                });
+                this.render(name, description, html_url);
+            }
+        } catch (ex) {
+            this.error(userName);
         }
     }
     render(nameRepo, descriptionRepo, urlRepo) {
@@ -55,6 +58,19 @@ class App {
         divRepoText.appendChild(textRepo);
         divRepoContent.appendChild(divRepoText);
         this.listEl.appendChild(divRepoContent);
+    }
+    error(nameUser) {
+        var content = document.createElement('div');
+        var icon = document.createElement('i');
+        var msg = document.createElement('label');
+        var msgString = document.createTextNode(`Usuário "${nameUser}" não encontrado!`)
+        content.setAttribute('class', 'error-content');
+        icon.setAttribute('class', 'error-icon far fa-frown');
+        msg.setAttribute('class', 'error-msg');
+        msg.appendChild(msgString);
+        content.appendChild(icon);
+        content.appendChild(msg);
+        this.listEl.appendChild(content);
     }
 
 }

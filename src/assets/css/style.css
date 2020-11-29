@@ -14,5 +14,18 @@
 .repo-name{
     font-size: 2.5ch;
 }
-.repo-link:link{
+.error-content{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: gray;
+}
+.error-icon{
+    font-size: 15ch;
+    margin-bottom: 20px;
+}
+.error-msg{
+    font-size: 3ch;
+    font-weight: 500;
 }
