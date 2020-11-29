@@ -1,109 +1,61 @@
-// variaveis const não podem ter seu valor reatribuidos, mas sim mutados
+import api from './api';
+class App {
+    constructor() {
+        this.formEl = document.getElementById('repo-form');
+        this.listEl = document.getElementById('repos-list');
+        this.inputEl = document.querySelector('input[name=repository]');
+        this.repositories = [];
+        this.registerHandlers();
+    }
+    registerHandlers() {
+        this.formEl.onsubmit = event => this.addRepos(event);
+    }
+    async addRepos(event) {
+        event.preventDefault();
+        this.listEl.innerHTML = '';
+        const userName = this.inputEl.value;
+        if (userName === '') {
+            return;
+        }
+        const response = await api.get(`/users/${userName}/repos`);
+        const { avatar_url } = response;
+        for (var repo of response.data) {
+            const { name, html_url, description } = repo;
+            this.repositories.push({
+                name,
+                description,
+                html_url,
+            });
+            this.render(name, description, html_url);
+        }
+    }
+    render(nameRepo, descriptionRepo, urlRepo) {
+        var name = document.createTextNode(nameRepo);
+        var description = document.createTextNode(descriptionRepo);
+        var html_url = urlRepo;
+        // --------------------------
+        var linkRepo = document.createElement('a');
+        var divRepoContent = document.createElement('div');
+        var divRepoText = document.createElement('div');
+        var titleRepo = document.createElement('h1');
+        var textRepo = document.createElement('p');
+        // --------------------------
+        linkRepo.setAttribute('class', 'repo-link text-secondary');
+        divRepoContent.setAttribute('class', 'repo-card d-md-flex align-items-center shadow-lg col-md-6 col-10 p-2 ml-md-4 mb-3 ml-auto mr-auto');
+        divRepoText.setAttribute('class', 'col mt-3')
+        titleRepo.setAttribute('class', 'repo-name text-dark')
+        textRepo.setAttribute('class', 'text-secondary');
+        // --------------------------
+        titleRepo.appendChild(name);
+        textRepo.appendChild(description);
+        linkRepo.setAttribute('href', html_url);
+        // --------------------------
+        linkRepo.appendChild(titleRepo);
+        divRepoText.appendChild(linkRepo);
+        divRepoText.appendChild(textRepo);
+        divRepoContent.appendChild(divRepoText);
+        this.listEl.appendChild(divRepoContent);
+    }
 
-//operações com constantes
-
-//percorre uma array e realiza operações sequenciais dentro dela;
-// const arr = [1,3,4,5,8,9,10];
-// const cont = arr.map(function(item,index){
-//     return item + index;
-// });
-// console.log(cont);
-
-//percorre uma array e utiliza o resultado de cada operação na operação futura;   
-// const sum = arr.reduce(function(total,next){
-//     return total + next;
-// });
-// console.log(sum);
-
-//percorre uma array e filtra cada valor que não se encaixa na regra. obs: O retorno precisa ser do tipo boolean 
-// const filter = arr.filter(function(item){
-//     return item % 2 === 0;
-// });
-// console.log(filter);
-
-//buscar dados percorrendo uma aray
-// const find = arr.find(function(item){
-//     return item === 10;
-// });
-// console.log(find);
-
-//-------------------------------------------------------------------------
-
-//funções anôninas "Arrow Functions"
-
-//forma utilizada normalmente
-
-// const newArr = arr.map((item) => {
-//     return item * 2;
-// });
-
-//quando só passa um parâmetro
-
-// const newArr = arr.map(item => {
-//     return item * 2;
-// });
-
-//quando retorna simplesmente uma informação
-
-// const newArr = arr.map(item => item * 2);
-
-// console.log(newArr);
-//--------------------------------------------------------------
-//valores default em functions arrows
-// const soma = (a = 3,b = 6) => a +b;
-
-// console.log(soma(1));
-// console.log(soma());
-//--------------------------------------------------------------
-
-// desestruturação de dados
-// const usuario = {
-//     nome: 'Diego',
-//     idade: 23,
-//     endereco: {
-//         cidade: 'Rio do Sul',
-//         estado: 'SC',
-//     },
-// }
-// const {nome,idade,endereco:{cidade}} = usuario;
-// console.log(nome);
-// console.log(idade);
-// console.log(cidade);
-
-// function mostrarDadosUsuario({nome,idade,endereco:{cidade}}){
-//     console.log(nome,idade,cidade);
-// }
-// mostrarDadosUsuario(usuario);
-
-//--------------------------------------------------------------
-
-//REST
-
-// const usuario = {
-//     nome: 'Diego',
-//     idade: 23,
-//     endereco: {
-//         cidade: 'Rio do Sul',
-//         estado: 'SC',
-//     },
-// }
-// const {nome,...resto} = usuario;
-// console.log(nome,resto);
-
-// function soma(a,b,...params){
-//     return params;
-// }
-// console.log(soma(1,3,4,5,6));
-
-//SPREAD
-
-// const arr1 = [1,2,3];
-// const arr2 = [4,5,6];
-// const arr3 = [...arr1,...arr2];
-// console.log(arr3);
-// const usuario1 = {
-//     nome: 'Diego',
-//     idade: 23,
-// }
-// const usuario2 = {...usuario1,nome:'Pedro'};
-// console.log(usuario2);
+}
+new App();
