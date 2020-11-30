@@ -7,5 +7,4 @@
 ## Sobre o Curso
 
 #### Este curso consiste em ensinar as utilidades básicas do uso do `ES6+` disponibilizado pela `Rocketseat` em sua plataformas de cursos
-
-#### [Link do curso](https://app.rocketseat.com.br/node/curso-java-script-es-6)
+[Link do site](https://natanael-oliveira.github.io/curso-es6)
