@@ -1,2 +1,2 @@
 # List-repos-github
-[Link do site](https://natanael-oliveira.github.io/curso-es6)
+[Link do site](https://natanael-oliveira.github.io/list-repos-github)
